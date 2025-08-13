@@ -1,0 +1,23 @@
+{
+  "name": "automationcamp-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "firstDay.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pboroumand/automationcamp-cypress.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pboroumand/automationcamp-cypress/issues"
+  },
+  "homepage": "https://github.com/pboroumand/automationcamp-cypress#readme",
+  "dependencies": {
+    "cypress": "^14.5.4"
+  }
+}
