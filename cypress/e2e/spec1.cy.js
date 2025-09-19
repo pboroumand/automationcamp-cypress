@@ -1,13 +1,17 @@
 /// <reference types="cypress" />
+beforeEach (function(){
+  cy.visit ("www.play2.automationcamp.ir/index.html")
+})
 
-describe('template spec', () => {
+describe('First spec', () => {
   it('passes', () => {
-    cy.visit ("www.play2.automationcamp.ir/index.html"),
     console.log('Hello World!')
   })
   it.only('My Test', ()=>{
-    cy.visit ("www.play2.automationcamp.ir/index.html")
-    cy.get('#fname').type('Parni Parni')
-    cy.get('#fname').should('have.value','Parni Parni')
+    cy.get('#fname').type('Parni Parni').should('have.value','Parni Parni')
+  })
+  it('Test', function(){
+    //cy.visit ('https://duckduckgo.com/')
+    //cy.get('input#searchbox_input').type("cypress{enter}")
   })
 })
