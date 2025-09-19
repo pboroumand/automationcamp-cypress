@@ -19,5 +19,6 @@
   "homepage": "https://github.com/pboroumand/automationcamp-cypress#readme",
   "dependencies": {
     "cypress": "^14.5.4"
-  }
+  },
+  "watchForFileChanges": false
 }
