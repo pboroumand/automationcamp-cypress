@@ -22,11 +22,24 @@ describe ('Session 3', ()=>{
         cy.get('#dd_python').click()
         cy.get('#hover_validate').should('contain','Python')
     })
-    it.only('Long Press', ()=>{
+    it('Long Press', ()=>{
         cy.visit('https://demos.telerik.com/kendo-ui/circular-gauge/index')
         cy.get('#onetrust-accept-btn-handler').click()
         cy.get('.k-draghandle').invoke('attr','aria-valuenow').should('equal','55')
         cy.get('.k-button-increase').trigger('mousedown',{which:1}).wait(3000).trigger('mouseup',{force:true})
         cy.get('.k-draghandle').invoke('attr','aria-valuenow').should('not.equal','55')
+    })
+    it.only('Drag & Drop', ()=>{
+        cy.visit('https://play1.automationcamp.ir/mouse_events.html')
+        cy.get('#drop_target').should('have.class', 'bg-success')
+        const dataTransfer = new DataTransfer();
+        cy.get('#drag_source').trigger('dragstart', { dataTransfer });
+        cy.get('#drop_target')
+        .trigger('dragenter', { dataTransfer })
+        .trigger('dragover', { dataTransfer })
+        .trigger('drop', { dataTransfer });
+        cy.get('#drag_source').trigger('dragend', { dataTransfer });
+        cy.wait(500)
+        cy.get('#drop_target').should('have.class', 'bg-danger')
     })
 })
