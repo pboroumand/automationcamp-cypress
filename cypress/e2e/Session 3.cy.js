@@ -29,7 +29,7 @@ describe ('Session 3', ()=>{
         cy.get('.k-button-increase').trigger('mousedown',{which:1}).wait(3000).trigger('mouseup',{force:true})
         cy.get('.k-draghandle').invoke('attr','aria-valuenow').should('not.equal','55')
     })
-    it.only('Drag & Drop', ()=>{
+    it('Drag & Drop', ()=>{
         cy.visit('https://play1.automationcamp.ir/mouse_events.html')
         cy.get('#drop_target').should('have.class', 'bg-success')
         const dataTransfer = new DataTransfer();
@@ -41,5 +41,12 @@ describe ('Session 3', ()=>{
         cy.get('#drag_source').trigger('dragend', { dataTransfer });
         cy.wait(500)
         cy.get('#drop_target').should('have.class', 'bg-danger')
+    })
+    it.only('Scrolling',()=>{
+        cy.visit('https://datatables.net/examples/basic_init/scroll_xy.html')
+        cy.get('.dt-scroll-headInner').scrollIntoView()
+        cy.get('.dt-scroll-body').scrollTo('right')
+        cy.get(':nth-child(4) > :nth-child(9)').click()
+        should('have.text','b.greer@datatables.net')
     })
 })
