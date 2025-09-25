@@ -24,7 +24,8 @@ describe('then',()=>{
     })
     it.only('Chips',()=>{
         cy.visit('https://material.angular.dev/components/select/overview#select-overview')
-        cy.get('select-multiple-example > .mat-mdc-form-field > .mat-mdc-text-field-wrapper').wait(20000).scrollIntoView().should('be.visible')
+        cy.wait(30000)
+        cy.get('select-multiple-example > .mat-mdc-form-field > .mat-mdc-text-field-wrapper').wait(10000).scrollIntoView().should('be.visible')
         cy.get('select-multiple-example > .mat-mdc-form-field > .mat-mdc-text-field-wrapper').click()
         cy.get('#mat-option-91').click()
         cy.get('#mat-option-93').click()
