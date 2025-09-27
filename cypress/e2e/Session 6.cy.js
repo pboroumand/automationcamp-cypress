@@ -16,4 +16,12 @@ describe ('Intract with Elements', ()=>{
         })
         cy.get('#confirm_cancelled_badge').should('have.text','Cancelled')
     })
+    it.only('Prompt', ()=>{
+        cy.visit('https://demoqa.com/alerts')
+        cy.window().then(function($win){
+            cy.get('#promtButton').click()
+            cy.stub($win, 'prompt').returns("Hello Parni's World!")
+        })
+        cy.get('#promptResult').should('include.text',"Hello Parni's World!")
+    })
 })
