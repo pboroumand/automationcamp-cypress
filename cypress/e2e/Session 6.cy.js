@@ -24,8 +24,31 @@ describe ('Intract with Elements', ()=>{
         })
         cy.get('#promptResult').should('include.text',"Hello Parni's World!")
     })
-    it.only('Closing Dialog',()=>{
+    it('Closing Dialog',()=>{
         cy.visit('https://material.angular.dev/components/dialog/examples')
-        //,
+        cy.get('.mat-primary > .mdc-button__label').click() //cookie
+        cy.get('#mat-tab-link-0').then(function(cdk){
+            cy.get('dialog-animations-example > :nth-child(1)').click()
+            cy.wait(1000)
+            let position= cdk[0].getBoundingClientRect()
+            cy.document().then(function(doc){
+                doc.elementFromPoint(position.x, position.y).click()
+            })
+        })
+    })
+    it('Snackbar',()=>{
+        cy.visit('https://material.angular.dev/components/snack-bar/overview')
+        cy.get('.mat-primary > .mdc-button__label').click() //cookie
+        cy.get('div.cdk-global-overlay-wrapper').should('not.exist')
+        cy.get('#mat-input-2').clear().type(1)
+        cy.get('snack-bar-annotated-component-example > .mdc-button').click()
+        cy.get('div.cdk-global-overlay-wrapper').should('exist')
+    })
+    it.only('Snackbar',()=>{
+        cy.visit('https://material.angular.dev/components/tooltip/overview')
+        cy.get('.mat-primary > .mdc-button__label').click() //closing cookie dialog
+        cy.get('div.mdc-tooltip__surface').should('not.exist')
+        cy.get('#tooltip-overview > .docs-example-viewer-wrapper > .docs-example-viewer-title > [aria-label="View source"] > .mat-mdc-button-touch-target').realHover()
+        cy.get('div.mdc-tooltip__surface').should('contain.text','View code')
     })
 })
