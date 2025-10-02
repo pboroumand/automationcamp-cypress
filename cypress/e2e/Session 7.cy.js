@@ -14,9 +14,41 @@ describe('First spec', () => {
       }
     })
   })
-  it.only('Table', () => {
+  it('Table', () => {
     cy.visit('https://play2.automationcamp.ir/index.html')
     cy.scrollTo('bottom')
     cy.get('table th').eq(4).should('have.text','Occupation')
+  })
+  it('Table 2', () => {
+    cy.visit('https://play2.automationcamp.ir/index.html')
+    cy.scrollTo('bottom')
+    cy.get('td').contains('Ross').parent().within(function(){
+      cy.get('td').eq(4).should('have.text','Paleontogist')
+    })
+  })
+  it('Table 3', () => {
+    cy.visit('https://play2.automationcamp.ir/index.html')
+    cy.scrollTo('bottom')
+    cy.get('th').each(function($el, index){
+      if ($el.text()==='Occupation'){
+        cy.get('td').contains('Ross').parent().within(function(){
+          cy.get('td').eq(index).should('have.text','Paleontogist')
+        })
+      }
+    })
+  })
+  it.only('Table 3', () => {
+    cy.visit('https://play2.automationcamp.ir/index.html')
+    cy.scrollTo('bottom')
+    cy.get('table tr').each(function($row, index){
+      if (index>0){
+        //cy.get('tr').eq(index).within(function(){
+        cy.wrap($row).within(function(){
+          cy.get('td').each(function($item){
+            cy.log($item.text())
+          })
+        })
+      }
+    })
   })
 })
