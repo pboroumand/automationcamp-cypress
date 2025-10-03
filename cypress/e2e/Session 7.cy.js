@@ -37,7 +37,7 @@ describe('First spec', () => {
       }
     })
   })
-  it.only('Table 3', () => {
+  it('Table 3', () => {
     cy.visit('https://play2.automationcamp.ir/index.html')
     cy.scrollTo('bottom')
     cy.get('table tr').each(function($row, index){
@@ -49,6 +49,21 @@ describe('First spec', () => {
           })
         })
       }
+    })
+  })
+  it.only('Table 4 - Asserting a User name', () => {
+    cy.visit('https://play2.automationcamp.ir/index.html')
+    cy.scrollTo('bottom')
+    let list = []
+    cy.get('table th').each(function($el,index){
+      if ($el.text()==='Firstname'){
+        cy.get(`tr>td:nth-child(${index+1})`).each(function($tdval){
+          list.push($tdval.text())
+        })
+      }
+    }).then(function(){
+      cy.log(JSON.stringify(list))
+      expect(list).to.contain('Pheobe')
     })
   })
 })
