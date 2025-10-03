@@ -1,6 +1,10 @@
 /// <reference types="cypress" />
 
 describe('First spec', () => {
+  before(function(){cy.log('Before describe block')})
+  after(function(){cy.log('After describe block')})
+  beforeEach(function(){cy.log('Test Setup')})
+  afterEach(function(){cy.log('Test tear down')})
   it('Array', () => {
     cy.visit('https://www.wikipedia.org/')
     cy.get("a[id*='js-link-box']").should('contain.text','日本語')
@@ -14,7 +18,7 @@ describe('First spec', () => {
       }
     })
   })
-  it('Table', () => {
+  it.only('Table', () => {
     cy.visit('https://play2.automationcamp.ir/index.html')
     cy.scrollTo('bottom')
     cy.get('table th').eq(4).should('have.text','Occupation')
