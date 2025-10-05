@@ -27,3 +27,7 @@
 Cypress.Commands.add('openLinkwithText',(LinkText)=>{
     cy.get('a').contains(LinkText).click()
 })
+
+Cypress.Commands.add('getText', {prevSubject:true}, ($element)=>{
+    return cy.wrap($element).invoke('text')
+})

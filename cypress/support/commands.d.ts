@@ -3,5 +3,6 @@
 declare namespace Cypress {
     interface Chainable {
         openLinkwithText (LinkText:string): cypress.Chainable
+        getText (element:Element): cypress.Chainable
     }
 }
