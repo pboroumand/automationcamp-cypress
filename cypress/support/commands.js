@@ -31,3 +31,11 @@ Cypress.Commands.add('openLinkwithText',(LinkText)=>{
 Cypress.Commands.add('getText', {prevSubject:true}, ($element)=>{
     return cy.wrap($element).invoke('text')
 })
+Cypress.Commands.add('getTextOptional', {prevSubject: 'optional'}, (subject)=>{
+    if (subject)        //if it is not undefined (0), it is a child command and is chained
+        return cy.wrap(subject).invoke('text')
+    else
+        return cy.get('h1').then (function ($el){
+            return $el.text()
+        })
+})
