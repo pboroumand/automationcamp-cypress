@@ -6,6 +6,7 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     "watchForFileChanges": false,
+    "defaultCommandTimeout": 6000,
     "video": true
   },
 });
