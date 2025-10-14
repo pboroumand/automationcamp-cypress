@@ -8,7 +8,7 @@ describe ('Iframe', ()=>{
             cy.wrap(frcont).find('#click_me_1').click()
         })
     })
-    it.only('nested iframe',()=>{
+    it('nested iframe 1',()=>{
         cy.visit('https://play1.automationcamp.ir/frames.html')
         cy.get('#frame1').then(function($fr1){
             const frcont1 = $fr1.contents().find('#frame2')
@@ -21,7 +21,21 @@ describe ('Iframe', ()=>{
             })
         })
     })
-    it('asserting',()=>{
-        cy.visit('')
+    it.only('nested iframe 2',()=>{
+        cy.visit('https://play1.automationcamp.ir/frames.html')
+        cy.get('#frame1').then(function($ifr1){
+            const ifr3Cont= $ifr1.contents().find('#frame3')
+            cy.wrap(ifr3Cont).as('ifrEl3')
+            cy.get('@ifrEl3').then(function($ifr3){
+                const ifr4Cont= $ifr3.contents().find('#frame4')
+                cy.wrap(ifr4Cont).as('ifrEl4')
+                cy.get('@ifrEl4').then(function($ifr4){
+                    const ifr4ContBod= $ifr4.contents().find('body')
+                    cy.wrap(ifr4ContBod).find('#click_me_4').should('have.text','Click Me 4')
+                    cy.wrap(ifr4ContBod).find('#click_me_4').click()
+                    cy.wrap(ifr4ContBod).find('#click_me_4').should('have.text','Clicked')
+                })
+            })
+        })
     })
 })
