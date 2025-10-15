@@ -21,7 +21,7 @@ describe ('Iframe', ()=>{
             })
         })
     })
-    it.only('nested iframe 2',()=>{
+    it('nested iframe 2',()=>{
         cy.visit('https://play1.automationcamp.ir/frames.html')
         cy.get('#frame1').then(function($ifr1){
             const ifr3Cont= $ifr1.contents().find('#frame3')
@@ -37,5 +37,14 @@ describe ('Iframe', ()=>{
                 })
             })
         })
+    })
+    it.only('nested iframe 3',()=>{
+        cy.visit('https://play1.automationcamp.ir/frames.html')
+        cy.get('#frame1')
+            .its('0.contentDocument')
+            .should('exist')
+            .its('body')
+            .should('not.be.undefined')
+            .find('#click_me_1').click()
     })
 })
