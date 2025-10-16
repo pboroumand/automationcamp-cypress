@@ -45,6 +45,6 @@ describe ('Iframe', ()=>{
             .should('exist')
             .its('body')
             .should('not.be.undefined')
-            .find('#click_me_1').click()
+            .find('#click_me_1').click().should('have.text','Clicked')
     })
 })
