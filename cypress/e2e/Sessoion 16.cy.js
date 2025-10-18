@@ -47,7 +47,7 @@ describe ('Iframe', ()=>{
             .should('not.be.undefined')
             .find('#click_me_1').click().should('have.text','Clicked')
     })
-    it.only('Nested iframe second way', ()=>{
+    it.only('Nested iframe different solution', ()=>{
         cy.visit('https://play1.automationcamp.ir/frames.html')
         cy.get('#frame1')
             .its('0.contentDocument')
