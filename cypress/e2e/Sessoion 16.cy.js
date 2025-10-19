@@ -1,4 +1,5 @@
-/// <reference types="cypress"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-iframe" />
 
 describe ('Iframe', ()=>{
     it('Iframe 1',()=>{
@@ -47,7 +48,7 @@ describe ('Iframe', ()=>{
             .should('not.be.undefined')
             .find('#click_me_1').click().should('have.text','Clicked')
     })
-    it.only('Nested iframe different solution', ()=>{
+    it('Nested iframe different solution', ()=>{
         cy.visit('https://play1.automationcamp.ir/frames.html')
         cy.get('#frame1')
             .its('0.contentDocument')
@@ -58,5 +59,29 @@ describe ('Iframe', ()=>{
             .its('body')
             .should('not.be.undefined')
             .find('#click_me_2').click().should('have.text','Clicked')
+    })
+    it('iframe with plugin', ()=>{
+        cy.visit('https://play1.automationcamp.ir/frames.html')
+        cy.frameLoaded('#frame1')
+        cy.iframe().find('#click_me_1').click().should('have.text','Clicked')
+    })
+    it('nested iframe with plugin', ()=>{
+        cy.visit('https://play1.automationcamp.ir/frames.html')
+        cy.frameLoaded('#frame1')
+        cy.iframe().within(()=>{
+            cy.frameLoaded('#frame2')
+            cy.iframe('#frame2').find('#click_me_2').click().should('have.text','Clicked')
+        })
+    })
+    it.only('nested iframe with plugin 2', ()=>{
+        cy.visit('https://play1.automationcamp.ir/frames.html')
+        cy.frameLoaded('#frame1')
+        cy.iframe().within(()=>{
+            cy.frameLoaded('#frame3')
+            cy.iframe('#frame3').within(()=>{
+                cy.frameLoaded('#frame4')
+                cy.iframe('#frame4').find('#click_me_4').click().should('have.text','Clicked')
+            })
+        })
     })
 })
