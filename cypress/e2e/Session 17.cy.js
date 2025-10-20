@@ -11,12 +11,12 @@ describe ('API Testing', ()=>{
         cy.request('https://restcountries.com/v3.1/name/australia').then($response=>{
             expect($response.status).to.eq(200)
             let currencykey= Object.keys($response.body[0]["currencies"])
-            cy.request("post","https://webhook.site/7b52ac40-cf8b-49c2-bf68-7e031397ecb7",{
-                name: "Australia",
+            cy.request("post","http://localhost:3000/countries",{
+                name: $response.body[0].name.common,
                 capital: $response.body[0].capital[0],
                 Currency: currencykey[0]
             })
-            cy.request("get","https://webhook.site/7b52ac40-cf8b-49c2-bf68-7e031397ecb7").then($respo=>{
+            cy.request("get","http://localhost:3000/countries").then($respo=>{
                 let result={}
                 $respo.body.forEach(item=>{
                     if (item.name==="Australia"){
@@ -24,7 +24,7 @@ describe ('API Testing', ()=>{
                     }
                 })
                 expect(result).not.to.empty
-                expect(result.capital).to.eq("Canbera")
+                expect(result.capital).to.eq("Canberra")
                 expect(result.Currency).to.eq('AUD')
             })
         })

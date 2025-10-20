@@ -1,0 +1,22 @@
+{
+  "countries": [
+    {
+      "id": "b001",
+      "name": "Iran",
+      "capital": "Tehran",
+      "Currency": "Rial"
+    },
+    {
+      "id": "b000",
+      "name": "Germany",
+      "capital": "Somewhere",
+      "Currency": "Euro"
+    },
+    {
+      "id": "1bf1",
+      "name": "Australia",
+      "capital": "Canberra",
+      "Currency": "AUD"
+    }
+  ]
+}
