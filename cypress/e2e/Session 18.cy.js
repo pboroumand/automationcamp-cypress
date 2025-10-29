@@ -1,25 +1,32 @@
 /// <reference types="cypress"/>
 
 describe ('Login', ()=>{
-    it.only('asserting login',()=>{
-        cy.visit('https://automationexercise.com/login')
-        cy.get('input[data-qa=login-email]').type('support@parni.com')
-        cy.get('input[data-qa=login-password]').type('1234')
-        cy.window().then((win) => {
-            win.document.querySelector('[data-qa="login-button"]').click()
+    beforeEach(function(){
+        /// cy.request('post','https://talafilmu.ir/account-login/',{log:"parni",pwd:"***"})
+        // .then(($resp)=>{
+        //     expect($resp.status).to.eq(200)
+        // })
+        cy.session('session1',()=>{
+            cy.visit('https://talafilmu.ir/account-login/')
+            cy.get('input[name=log]').type('parni')
+            cy.get('input[name=pwd]').type('***')
+            cy.get('input[type=submit]').click()
+            cy.location('pathname').should('eq','/')
         })
-        // cy.get('button[data-qa=login-button]').then(($btn) => {
-        //     // trigger native click directly in browser, outside Cypress' control
-        //     $btn[0].click()
-        // })
-        // cy.origin('https://automationexercise.com', () => {
-        //     cy.url().should('eq', 'https://automationexercise.com/')
-        //     cy.get('#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(10) > a > b').should('have.text', 'support')
-        // })
-        cy.get('#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(10) > a > b').should('have.text', 'support')
+        
     })
-    it('asserting',()=>{
-        cy.visit('')
+    it('login test',()=>{
+        cy.visit('https://talafilmu.ir/account-login/')
+        cy.get('input[name=log]').type('parni')
+        cy.get('input[name=pwd]').type('***')
+        cy.get('input[type=submit]').click()
+        cy.get('#dropdownMenuLink').click()
+        cy.get('.item-avatar-text > strong').should('have.text','parni')
+    })
+    it.only('login with beforeEach',()=>{
+        cy.visit('https://talafilmu.ir/')
+        cy.get('#dropdownMenuLink').click()
+        cy.get('.item-avatar-text > strong').should('have.text','parni')
     })
     it('asserting',()=>{
         cy.visit('')
