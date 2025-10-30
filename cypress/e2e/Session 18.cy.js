@@ -6,13 +6,13 @@ describe ('Login', ()=>{
         // .then(($resp)=>{
         //     expect($resp.status).to.eq(200)
         // })
-        cy.session('session1',()=>{
-            cy.visit('https://talafilmu.ir/account-login/')
-            cy.get('input[name=log]').type('parni')
-            cy.get('input[name=pwd]').type('***')
-            cy.get('input[type=submit]').click()
-            cy.location('pathname').should('eq','/')
-        })
+        // cy.session('session1',()=>{
+        //     cy.visit('https://talafilmu.ir/account-login/')
+        //     cy.get('input[name=log]').type('parni')
+        //     cy.get('input[name=pwd]').type('***')
+        //     cy.get('input[type=submit]').click()
+        //     cy.location('pathname').should('eq','/')
+        // })
         
     })
     it('login test',()=>{
@@ -23,12 +23,19 @@ describe ('Login', ()=>{
         cy.get('#dropdownMenuLink').click()
         cy.get('.item-avatar-text > strong').should('have.text','parni')
     })
-    it.only('login with beforeEach',()=>{
+    it('login with beforeEach',()=>{
         cy.visit('https://talafilmu.ir/')
         cy.get('#dropdownMenuLink').click()
         cy.get('.item-avatar-text > strong').should('have.text','parni')
     })
-    it('asserting',()=>{
-        cy.visit('')
+    it.only('login using custom command',()=>{
+        cy.LoginUsingUI('parni','***')
+        cy.visit('https://talafilmu.ir/')
+        cy.get('#dropdownMenuLink').click()
+        cy.get('.item-avatar-text > strong').should('have.text','parni')
+        cy.LoginUsingUI('padiav','***')
+        cy.visit('https://talafilmu.ir/')
+        cy.get('#dropdownMenuLink').click()
+        cy.get('.item-avatar-text > strong').should('have.text','padiav')
     })
 })

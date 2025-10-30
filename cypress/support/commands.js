@@ -39,3 +39,11 @@ Cypress.Commands.add('getTextOptional', {prevSubject: 'optional'}, (subject)=>{
             return $el.text()
         })
 })
+Cypress.Commands.add('LoginUsingUI',(user,password)=>{
+    cy.session(user,()=>{
+            cy.visit('https://talafilmu.ir/account-login/')
+            cy.get('input[name=log]').type(user)
+            cy.get('input[name=pwd]').type(password)
+            cy.get('input[type=submit]').click()
+        })
+})
