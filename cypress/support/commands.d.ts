@@ -12,5 +12,6 @@ declare namespace Cypress {
          */
         getTextOptional (element: Element): cypress.Chainable
         LoginUsingUI (user: string, password: string): cypress.Chainable
+        logout(): Cypress.Chainable
     }
 }

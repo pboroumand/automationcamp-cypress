@@ -45,5 +45,10 @@ Cypress.Commands.add('LoginUsingUI',(user,password)=>{
             cy.get('input[name=log]').type(user)
             cy.get('input[name=pwd]').type(password)
             cy.get('input[type=submit]').click()
-        })
+        },{cacheAcrossSpecs: true})
+})
+Cypress.Commands.add('logout', ()=>{
+    Cypress.session.clearAllSavedSessions()
+    cy.clearCookies()
+    cy.reload()
 })
