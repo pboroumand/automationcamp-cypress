@@ -29,11 +29,11 @@ describe ('Login', ()=>{
         cy.get('.item-avatar-text > strong').should('have.text','parni')
     })
     it.only('login using custom command',()=>{
-        cy.LoginUsingUI('parni','43j12272')
+        cy.LoginUsingUI('parni','***')
         cy.visit('https://talafilmu.ir/')
         cy.get('#dropdownMenuLink').click()
         cy.get('.item-avatar-text > strong').should('have.text','parni')
-        cy.LoginUsingUI('padiav','43j12272')
+        cy.LoginUsingUI('padiav','***')
         cy.visit('https://talafilmu.ir/')
         cy.get('#dropdownMenuLink').click()
         cy.get('.item-avatar-text > strong').should('have.text','padiav')

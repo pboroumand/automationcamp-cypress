@@ -3,7 +3,7 @@
 describe ('Login', ()=>{
     it('login using session',()=>{
         Cypress.Cookies.debug(true)
-        cy.LoginUsingUI('parni','43j12272')
+        cy.LoginUsingUI('parni','***')
         cy.visit('https://talafilmu.ir/')
         cy.get('#dropdownMenuLink').click()
         cy.get('.item-avatar-text > strong').should('have.text','parni')
