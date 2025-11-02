@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "cypress": "^15.5.0",
+    "cypress-downloadfile": "^1.2.4",
     "cypress-iframe": "^1.0.1",
     "iframe": "^1.0.0"
   }

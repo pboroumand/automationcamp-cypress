@@ -24,6 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+require ('cypress-downloadfile/lib/downloadFileCommand')
+
 Cypress.Commands.add('openLinkwithText',(LinkText)=>{
     cy.get('a').contains(LinkText).click()
 })
@@ -51,4 +53,11 @@ Cypress.Commands.add('logout', ()=>{
     Cypress.session.clearAllSavedSessions()
     cy.clearCookies()
     cy.reload()
+})
+Cypress.Commands.add('addProduct', (bookName)=>{
+    cy.get('.product-title > a').each(($el,index, list)=>{
+        if ($el.text().includes(bookName)){
+            cy.get('.product-box-add-to-cart-button').eq(index).click()
+        }
+    })
 })
