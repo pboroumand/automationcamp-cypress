@@ -13,8 +13,13 @@ describe ('Data Driven 2', ()=>{
         cy.wait(3000)
         cy.readFile('cypress/downloads/sample_text.txt').should('include','by AutomationCamp')
     })
-    it.only('download file with link',()=>{
+    it('download file with link',()=>{
         cy.downloadFile('https://play1.automationcamp.ir/sample_text.txt', 'cypress/downloads/MyDownloads', 'MyText.txt')
         cy.readFile('cypress/downloads/MyDownloads/MyText.txt').should('include','by AutomationCamp')
+    })
+    it.only('upload file',()=>{
+        cy.visit('https://www.play1.automationcamp.ir/forms.html')
+        cy.get('#upload_cv').selectFile('cypress/fixtures/Books.json')
+        cy.get('#validate_cv').should('have.text', 'Books.json')
     })
 })
