@@ -18,8 +18,14 @@ describe ('Data Driven 2', ()=>{
         cy.readFile('cypress/downloads/MyDownloads/MyText.txt').should('include','by AutomationCamp')
     })
     it.only('upload file',()=>{
-        cy.visit('https://www.play1.automationcamp.ir/forms.html')
-        cy.get('#upload_cv').selectFile('cypress/fixtures/Books.json')
+        cy.visit('https://www.play1.automationcamp.ir/forms.html', {action: 'drag-drop'})
+        cy.get('#upload_cv').selectFile(['cypress/fixtures/Books.json'])
         cy.get('#validate_cv').should('have.text', 'Books.json')
+    })
+    it('upload multiple files',()=>{
+        cy.visit('https://www.play1.automationcamp.ir/forms.html')
+        cy.get('#upload_files').selectFile(["cypress/fixtures/Books.json","cypress/downloads/MyDownloads/MyText.txt"])
+        cy.get('#validate_files').should('include.text', 'Books.json')
+        cy.get('#validate_files').should('include.text', 'MyText.txt')
     })
 })
