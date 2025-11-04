@@ -1,17 +1,11 @@
 /// <reference types="cypress"/>
 
 describe ('waits', ()=>{
-    it.only('implicit wait',()=>{
+    it.only('implicit wait',{defaultCommandTimeout:7002},()=>{
         cy.visit('https://www.play1.automationcamp.ir/expected_conditions.html')
-        cy.get('#min_wait').clear().type(8)
-        cy.get('#max_wait').clear().type(8)
+        cy.get('#min_wait').clear().type(7)
+        cy.get('#max_wait').clear().type(7)
         cy.get('#visibility_trigger').click()
-        cy.get('#visibility_target',{Timeout:8002}).should('be.visible')
-    })
-    it('asserting',()=>{
-        cy.visit('')
-    })
-    it('asserting',()=>{
-        cy.visit('')
+        cy.get('#visibility_target').should('be.visible')
     })
 })
