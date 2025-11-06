@@ -5,14 +5,16 @@ describe ('waits', ()=>{
         cy.log(`page load timeout: ${Cypress.config('pageLoadTimeout')}`)
         Cypress.config('pageLoadTimeout', 5000)
     })
-    it('implicit wait',{defaultCommandTimeout:7002},()=>{
+    it.only('implicit wait',{defaultCommandTimeout:7002},()=>{
         cy.visit('https://www.play1.automationcamp.ir/expected_conditions.html')
+        cy.debug()
         cy.get('#min_wait').clear().type(7)
         cy.get('#max_wait').clear().type(7)
         cy.get('#visibility_trigger').click()
         cy.get('#visibility_target').should('be.visible')
+        console.error('this is an error')
     })
-    it.only('page load test', ()=>{
+    it('page load test', ()=>{
         cy.log(`page load time: ${Cypress.config('pageLoadTimeout')}`)
         cy.visit('https://play2.automationcamp.ir/index.html')
         cy.document({timeout:1000}).its('readyState').should('eq','complete')
