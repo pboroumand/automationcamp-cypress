@@ -24,6 +24,7 @@
     "cypress": "^15.5.0",
     "cypress-downloadfile": "^1.2.4",
     "cypress-iframe": "^1.0.1",
+    "cypress-terminal-report": "^7.3.3",
     "iframe": "^1.0.0"
   }
 }

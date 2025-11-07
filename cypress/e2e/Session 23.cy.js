@@ -1,7 +1,9 @@
 /// <reference types="cypress"/>
 
-describe ('wrap', ()=>{
-    it.only('asserting',()=>{
+//const { Runnable } = require("mocha")
+
+describe ('Debugging', ()=>{
+    it('console',()=>{
         console.time('myTimer')
         cy.visit('https://www.play1.automationcamp.ir/')
         console.timeEnd('myTimer')
@@ -31,8 +33,17 @@ describe ('wrap', ()=>{
             }
         })
     })
-    it('asserting',()=>{
-        cy.visit('')
+    it.only('handling application errors',()=>{
+        cy.on('uncaught: exception', (e, Runnable)=>{
+            console.log(e)
+            console.log(Runnable)
+            // ignore the error
+            return false
+        })
+        cy.visit('uncaught-exception.html')
+        cy.get('#error').click()
+        cy.screenshot("Element Screenshot")
+        cy.wait(2000)
     })
     it('asserting',{defaultCommandTimeout:7000},()=>{
         cy.visit('https://www.play1.automationcamp.ir/')
