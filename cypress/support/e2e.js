@@ -17,6 +17,8 @@
 import './commands';
 import "cypress-real-events";
 import 'cypress-iframe';
+import '@testing-library/cypress/add-commands'
+import 'cypress-plugin-api'
 require('cypress-terminal-report/src/installLogsCollector')();
 
 Cypress.on('uncaught:exception', (err, runnable) => {
