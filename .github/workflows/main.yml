@@ -9,11 +9,11 @@ jobs:
       - name: Checkout 
         uses: actions/checkout@v4
       - name: Install dependencies
-        uses: cypress-io/github-action@v5.0.10
+        uses: cypress-io/github-action@v6
         with:
           runTests: false
       - name: Run tests
-        uses: cypress-io/github-action@v5.0.10
+        uses: cypress-io/github-action@v6
         with:
           command: "npm run cy:test"
       - name: Upload videos
