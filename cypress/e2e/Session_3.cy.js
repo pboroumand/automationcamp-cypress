@@ -46,7 +46,6 @@ describe ('Session 3', ()=>{
         cy.visit('https://datatables.net/examples/basic_init/scroll_xy.html')
         cy.get('.dt-scroll-headInner').scrollIntoView()
         cy.get('.dt-scroll-body').scrollTo('right')
-        cy.get(':nth-child(4) > :nth-child(9)').click()
-        should('have.text','b.greer@datatables.net')
+        cy.get(':nth-child(4) > :nth-child(9)').click().should('have.text','b.greer@datatables.net')
     })
 })
