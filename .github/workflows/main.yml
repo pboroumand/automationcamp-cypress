@@ -15,7 +15,11 @@ jobs:
       - name: Run tests
         uses: cypress-io/github-action@v6
         with:
-          command: "npm run cy:test"
+          command: "npm run cy:test --record"
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload videos
         uses: actions/upload-artifact@v4
         if: always()
