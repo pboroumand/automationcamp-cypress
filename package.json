@@ -29,6 +29,7 @@
     "cypress-iframe": "^1.0.1",
     "cypress-plugin-api": "^2.11.2",
     "cypress-terminal-report": "^7.3.3",
-    "iframe": "^1.0.0"
+    "iframe": "^1.0.0",
+    "mysql": "^2.18.1"
   }
 }
